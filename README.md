@@ -3,6 +3,7 @@
 # Angular commands
 - ng generate component "name" 
 - ng generate module app-routing --flat --module=app
+- ng serve -o
 
 # Npm commands for installing modules
 - npm install "name of module" --save
