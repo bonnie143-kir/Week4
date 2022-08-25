@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-app.use(express.static(__dirname+'/src'));
+app.use(express.static(__dirname+'/src/app'));
 
 app.post('/api/auth', function(req,res){
    let users = [
-    {'username': 'bongii', 'birthdate': '14 Jan', 'age': 23, 'email': 'bongii@outmail.com', 'password': '1234', 'valid': True},
-    {'username': 'bonnie', 'birthdate': '14 Jan', 'age': 23, 'email': 'bonnie@outmail.com', 'password': '567', 'valid': True},
-    {'username': 'bong', 'birthdate': '14 Jan', 'age': 23, 'email': 'bong@outmail.com', 'password': 'abcd', 'valid': True}
+    {'username': 'bongii', 'birthdate': '14 Jan', 'age': 23, 'email': 'bongii@outmail.com', 'password': '1234', 'valid': true},
+    {'username': 'bonnie', 'birthdate': '14 Jan', 'age': 23, 'email': 'bonnie@outmail.com', 'password': '567', 'valid': true},
+    {'username': 'bong', 'birthdate': '14 Jan', 'age': 23, 'email': 'bong@outmail.com', 'password': 'abcd', 'valid': true}
     ]
 
     if (!req.body){
@@ -26,6 +26,4 @@ app.post('/api/auth', function(req,res){
         }
     }
         res.send(session.stringify);
-        console.log(session.stringify);
-        document.getElementById("userArray").innerText = session;
 });
