@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-app.use(express.static(__dirname+'/www'));
+app.use(express.static(__dirname+'/src'));
 
 app.post('/api/auth', function(req,res){
    let users = [
@@ -26,4 +26,6 @@ app.post('/api/auth', function(req,res){
         }
     }
         res.send(session.stringify);
+        console.log(session.stringify);
+        document.getElementById("userArray").innerText = session;
 });
