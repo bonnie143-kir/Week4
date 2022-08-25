@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "week5 extension of week4",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bonnie143-kir/Week4.git"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "bongii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bonnie143-kir/Week4/issues"
+  },
+  "homepage": "https://github.com/bonnie143-kir/Week4#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
