@@ -13,9 +13,9 @@ app.post('/api/auth', function(req,res){
     if (!req.body){
         return res.sendStatus(400)
     }
-        var user = {};
-        user.email = req.body.email;
-        user.password = req.body.password;
+        var session = {};
+        session.email = req.body.email;
+        session.password = req.body.password;
     for (let i=0;i<users.length;i++){
         if (req.body.email == users[i].email && req.body.password == users[i].password){
             users[i].valid;
@@ -25,5 +25,5 @@ app.post('/api/auth', function(req,res){
             users[i].email;
         }
     }
-        res.send(user);
+        res.send(session.stringify);
 });
