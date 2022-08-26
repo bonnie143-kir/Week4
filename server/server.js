@@ -1,22 +1,33 @@
 var express = require('express');
 var app = express();
 
+const cors = require('cors');
+app.use(cors());
+
+app.use(function(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,post,DELETE,OPTIONS");
+    res.header ("Access-Control-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next(); 
+});
+
 const path = require('path');
-var http = require('http').Server(app);
-app.use(express.static(path.join(__dirname,'../src/app/')));
 
-require('./routes/api-login.js')(app.path);
-require('./listen.js')(http);
+app.use(express.static(path.join(__dirname,'./dist/week4tute/')));
 
-app.post('/api/auth', function(req,res){
+// require('./routes/api-login.js')(app.path);
+// require('./listen.js')(http);
+
+app.post('/auth', function(req,res){
    let users = [
     {'username': 'bongii', 'birthdate': '14 Jan', 'age': 23, 'email': 'bongii@outmail.com', 'password': '1234', 'valid': true},
     {'username': 'bonnie', 'birthdate': '14 Jan', 'age': 23, 'email': 'bonnie@outmail.com', 'password': '567', 'valid': true},
     {'username': 'bong', 'birthdate': '14 Jan', 'age': 23, 'email': 'bong@outmail.com', 'password': 'abcd', 'valid': true}
     ]
 
+    // console.log(req.body.email+req.body.password);
     if (!req.body){
-        return res.sendStatus(400)
+        //return res.sendStatus(400)
     }
         var session = {};
         session.email = req.body.email;
@@ -32,3 +43,13 @@ app.post('/api/auth', function(req,res){
     }
         res.send(session.stringify);
 });
+var http = require('http').Server(app);
+http.listen(3000, ()=>{
+    var d = new Date();
+    var n = d.getHours();
+    var m = d.getMinutes();
+    console.log('Server has started listening at: ' + n + ":" + m); 
+});
+
+// app.post('/login, require('./router/postLogin')
+// 
