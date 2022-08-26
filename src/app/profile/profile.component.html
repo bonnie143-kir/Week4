@@ -1,38 +1,41 @@
-<div "ngIf=isLoggedIn">
-    <h1>This is your profile</h1>
+<div *ngIf="isLoggedIn">
+    <h1> This is your profile</h1>
+    {{email}}
+    {{birthdate}}
+    {{age}}
 
 </div>
 
 
 <button (click)="edit()">Edit Details</button>
-<div "ngIf=isEdit">
+<div *ngIf="isEdit">
     <h2>Edit your details here:</h2>
 
     <form>
         <div class="form-outline mb-4">
-            <input type="email" [(ngModel)]="email" name="email"/>
+            <input type="email" [(ngModel)]="email" name="email">
             <label class="form-label" for="email">Email</label>
-          </div>
+        </div>
       
-          <div class="form-outline mb-4">
-            <input type="password" [(ngModel)]="password" name="password"/>
+        <div class="form-outline mb-4">
+            <input type="password" [(ngModel)]="password" name="password">
             <label class="form-label" for="password">Password</label>
-          </div>
+        </div>
     
-          <div class="form-outline mb-4">
-            <input type="date" [(ngModel)]="birthdate" name="birthdate"/>
+        <div class="form-outline mb-4">
+            <input type="date" [(ngModel)]="birthdate" name="birthdate">
             <label class="form-label" for="birthdate">Birthdate</label>
-          </div>
+        </div>
       
-          <div class="form-outline mb-4">
-            <input type="age" [(ngModel)]="age" name="age"/>
+        <div class="form-outline mb-4">
+            <input type="age" [(ngModel)]="age" name="age">
             <label class="form-label" for="age">Age</label>
-          </div>
+        </div>
     
-          <div class="form-outline mb-4">
-            <input type="username" [(ngModel)]="username" name="username"/>
+        <div class="form-outline mb-4">
+            <input type="username" [(ngModel)]="username" name="username">
             <label class="form-label" for="username">Username</label>
-          </div>
+        </div>                
     </form>
 </div>
 

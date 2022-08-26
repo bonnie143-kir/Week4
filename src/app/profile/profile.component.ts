@@ -7,8 +7,13 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
 
+export class ProfileComponent implements OnInit {
+  age = 0;
+  email = "";
+  password = "";
+  username = "";
+  birthdate = "";
   isLoggedIn = false;
   isEdit = false;
   isDone = false;
@@ -25,14 +30,35 @@ export class ProfileComponent implements OnInit {
 
   edit(){
     this.isEdit = true;
+    let userObj = {
+      'userid': this.username,
+      'email': this.email,
+      'birthdate': this.birthdate,
+      'age':this.age
+    }
+
+    sessionStorage.setItem('username', this.username);
+    sessionStorage.setItem('email', this.email);
+    sessionStorage.setItem('birthdate', this.birthdate);
+    //sessionStorage.setItem('age', this.age);
+
   }
 
   done(){
     this.isEdit = false;
+
+    let userObj = [
+      {'user': sessionStorage.getItem(this.username)},
+      {'email': sessionStorage.getItem(this.email)},
+      {'birthdate': sessionStorage.getItem(this.birthdate)},
+      //{'age': sessionStorage.getItem(this.age)}
+    ]
   }
 
   logOut(){
     this.isLoggedOut = true;
+    this.router.navigateByUrl('/login');
+    // add link to home and login page
   }
 
 }
