@@ -9,6 +9,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
+  isLoggedIn = false;
+  isEdit = false;
+  isDone = false;
+  isLoggedOut = false;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -18,8 +23,16 @@ export class ProfileComponent implements OnInit {
     this.router.navigateByUrl('/profile');
   }
 
+  edit(){
+    this.isEdit = true;
+  }
+
   done(){
-    // save details back to session storage and display it on account page
+    this.isEdit = false;
+  }
+
+  logOut(){
+    this.isLoggedOut = true;
   }
 
 }
