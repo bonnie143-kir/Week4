@@ -4,19 +4,16 @@ var app = express();
 const cors = require('cors');
 app.use(cors());
 
-app.use(function(req,res,next){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,post,DELETE,OPTIONS");
-    res.header ("Access-Control-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next(); 
-});
+// app.use(function(req,res,next){
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,post,DELETE,OPTIONS");
+//     res.header ("Access-Control-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next(); 
+// });
 
 const path = require('path');
 
 app.use(express.static(path.join(__dirname,'./dist/week4tute/')));
-
-// require('./routes/api-login.js')(app.path);
-// require('./listen.js')(http);
 
 app.post('/auth', function(req,res){
    let users = [
@@ -27,11 +24,11 @@ app.post('/auth', function(req,res){
 
     // console.log(req.body.email+req.body.password);
     if (!req.body){
-        //return res.sendStatus(400)
+        return res.sendStatus(400)
     }
-        var session = {};
-        session.email = req.body.email;
-        session.password = req.body.password;
+        var user = {};
+        user.email = req.body.email;
+        user.password = req.body.password;
     for (let i=0;i<users.length;i++){
         if (req.body.email == users[i].email && req.body.password == users[i].password){
             users[i].valid;
@@ -41,8 +38,9 @@ app.post('/auth', function(req,res){
             users[i].email;
         }
     }
-        res.send(session.stringify);
+        res.send(user);
 });
+
 var http = require('http').Server(app);
 http.listen(3000, ()=>{
     var d = new Date();
@@ -50,6 +48,3 @@ http.listen(3000, ()=>{
     var m = d.getMinutes();
     console.log('Server has started listening at: ' + n + ":" + m); 
 });
-
-// app.post('/login, require('./router/postLogin')
-// 
