@@ -1,7 +1,12 @@
 var express = require('express');
 var app = express();
+
+const path = require('path');
 var http = require('http').Server(app);
-app.use(express.static(__dirname+'/src/app'));
+app.use(express.static(path.join(__dirname,'../src/app/')));
+
+require('./routes/api-login.js')(app.path);
+require('./listen.js')(http);
 
 app.post('/api/auth', function(req,res){
    let users = [
