@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-
 const cors = require('cors');
 app.use(cors());
 
@@ -12,6 +11,7 @@ app.use(cors());
 // });
 
 const path = require('path');
+const { ok } = require('assert');
 
 app.use(express.static(path.join(__dirname,'./dist/week4tute/')));
 
@@ -23,12 +23,10 @@ app.post('/auth', function(req,res){
     {'username': 'bong', 'birthdate': '14 Jan', 'age': 23, 'email': 'bong@outmail.com', 'password': 'abcd', 'valid': true}
     ]
 
-    
-        console.log(req.body.email+req.body.password);
-        var user = {};
-        user.email = req.body.email;
-        user.password = req.body.password;
-        console.log(user);
+    var user = {};
+    user.email = req.body.email;
+    user.password = req.body.password;
+    //console.log(user);
     for (let i=0;i<users.length;i++){
         if (req.body.email == users[i].email && req.body.password == users[i].password){
             users[i].valid;
