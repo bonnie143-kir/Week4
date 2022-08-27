@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { SubscribeService } from '../subscribe.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -24,27 +25,27 @@ export class LoginComponent implements OnInit {
     {'username': 'bong', 'birthdate': '14 Jan', 'age': 23, 'email': 'bong@outmail.com', 'password': 'abcd', 'valid': true}
   ]
 
-  constructor(private router: Router, private route: ActivatedRoute, private httpClient: HttpClient) {}
+  constructor(private router: Router, private route: ActivatedRoute, private httpClient: HttpClient, private SubscribeService: SubscribeService) {}
 
   ngOnInit(): void {
   }
 
   loginChck(){
-    let user = {email: this.email, password: this.password};
+    let user = {'email': this.email, 'password': this.password};
     console.log(user);
     this.httpClient.post(BACKEND_URL + '/auth', user)
-      .subscribe((data:any)=>{
-        if (data.ok){
-          sessionStorage.setItem('email', data.email);
-          sessionStorage.setItem('username', data.username);
-          sessionStorage.setItem('birthdate', data.birthdate);
-          sessionStorage.setItem('age', data.age);
-          alert("valid user");
-          this.router.navigateByUrl('/account');
-        } else{
-          alert("invalid");
-        }
-      });
+    this.SubscribeService.assignValue().subscribe((data:any)=>{
+      if (data.ok){
+        sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('password', data.password);
+        sessionStorage.setItem('username', data.username);
+        sessionStorage.setItem('birthdate', data.birthdate);
+        sessionStorage.setItem('age', data.age);
+        this.router.navigateByUrl('/account');  
+      }else{
+        alert("Invalid login credentials");
+      }
+    });
   }
 
   // in the loginCHk add the session storage.setitem 
