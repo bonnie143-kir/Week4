@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 const cors = require('cors');
 app.use(cors());
+var bodyParser = require('body-parser');
+app.use (bodyParser.json());
+
 
 // app.use(function(req,res,next){
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -26,7 +29,7 @@ app.post('/auth', function(req,res){
     var user = {};
     user.email = req.body.email;
     user.password = req.body.password;
-    //console.log(user);
+    console.log(user);
     for (let i=0;i<users.length;i++){
         if (req.body.email == users[i].email && req.body.password == users[i].password){
             users[i].valid;
