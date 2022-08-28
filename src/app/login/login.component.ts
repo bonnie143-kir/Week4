@@ -34,17 +34,20 @@ export class LoginComponent implements OnInit {
     let user = {'email': this.email, 'password': this.password};
     console.log(user);
     this.httpClient.post(BACKEND_URL + '/auth', user)
-    this.SubscribeService.assignValue().subscribe((data:any)=>{
-      if (data.ok){
-        sessionStorage.setItem('email', data.email);
-        sessionStorage.setItem('password', data.password);
-        sessionStorage.setItem('username', data.username);
-        sessionStorage.setItem('birthdate', data.birthdate);
-        sessionStorage.setItem('age', data.age);
-        this.router.navigateByUrl('/account');  
-      }else{
-        alert("Invalid login credentials");
-      }
+    this.SubscribeService.assignValue().subscribe((data)=>{
+      console.log(data);
+      // if (data.ok){
+      //   sessionStorage.setItem('email', data.email);
+      //   sessionStorage.setItem('password', data.password);
+      //   sessionStorage.setItem('username', data.username);
+      //   sessionStorage.setItem('birthdate', data.birthdate);
+      //   sessionStorage.setItem('age', data.age);
+      //   this.router.navigateByUrl('/account');  
+      // }else{
+      //   console.log(this.email);
+      //   console.log(this.password);
+      //   alert("Invalid login credentials");
+      // }
     });
   }
 
