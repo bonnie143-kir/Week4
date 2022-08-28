@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -5,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SubscribeService {
+
+  constructor(private httpClient: HttpClient) {}
+  
   assignValue() {
     const SubscribeObservable = new Observable((observer) => {
       observer.next('Angular');

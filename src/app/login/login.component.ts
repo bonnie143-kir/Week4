@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   loginChck(){
     let user = {'email': this.email, 'password': this.password};
     console.log(user);
-    this.httpClient.post(BACKEND_URL + '/auth', user)
+    this.httpClient.post(BACKEND_URL + '/auth', JSON.stringify(user))
     this.SubscribeService.assignValue().subscribe((data)=>{
       console.log(data);
       // if (data.ok){
