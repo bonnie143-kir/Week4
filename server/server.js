@@ -4,15 +4,6 @@ const cors = require('cors');
 app.use(cors());
 var bodyParser = require('body-parser');
 app.use (bodyParser.json());
-
-
-// app.use(function(req,res,next){
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,post,DELETE,OPTIONS");
-//     res.header ("Access-Control-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next(); 
-// });
-
 const path = require('path');
 const { ok } = require('assert');
 
@@ -29,7 +20,7 @@ app.post('/auth', function(req,res){
     var user = {};
     user.email = req.body.email;
     user.password = req.body.password;
-    console.log(user);
+    console.log("This is: ", user);
     for (let i=0;i<users.length;i++){
         if (req.body.email == users[i].email && req.body.password == users[i].password){
             users[i].valid;
