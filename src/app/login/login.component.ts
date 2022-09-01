@@ -34,27 +34,25 @@ export class LoginComponent implements OnInit {
     let user = {'email': this.email, 'password': this.password};
     console.log(user);
     this.httpClient.post(BACKEND_URL + '/auth', JSON.stringify(user))
-    this.SubscribeService.assignValue().subscribe((data)=>{
+    this.SubscribeService.assignValue().subscribe((data:any)=>{
       console.log(data);
-      // if (data.ok){
-      //   sessionStorage.setItem('email', data.email);
-      //   sessionStorage.setItem('password', data.password);
-      //   sessionStorage.setItem('username', data.username);
-      //   sessionStorage.setItem('birthdate', data.birthdate);
-      //   sessionStorage.setItem('age', data.age);
-      //   this.router.navigateByUrl('/account');  
-      // }else{
-      //   console.log(this.email);
-      //   console.log(this.password);
-      //   alert("Invalid login credentials");
-      // }
+      if (data.ok){
+        sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('password', data.password);
+        sessionStorage.setItem('username', data.username);
+        sessionStorage.setItem('birthdate', data.birthdate);
+        sessionStorage.setItem('age', data.age);
+        this.router.navigateByUrl('/account');  
+      }else{
+        console.log(this.email);
+        console.log(this.password);
+        alert("Invalid login credentials");
+      }
     });
   }
 
-  // in the loginCHk add the session storage.setitem 
-
   navbyurl() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/account');
   }
 
   
